@@ -41,7 +41,12 @@
      * prompted by your browser. If you see the error "The Geolocation service
      * failed.", it means you probably did not give permission for the browser to
      * locate you. */
-    var map, pos, service, bounds, infoWindow, currentInfoWindow;
+    let map;
+    let pos;
+    let service;
+    let bounds;
+    let infoWindow;
+    let currentInfoWindow;
     function initMap() {
       // Set the default location
       pos = {lat: -33.857, lng: 151.213};
@@ -88,7 +93,7 @@
     }
 
     function getNearbyPlaces(position) {
-      var request = {
+      let request = {
           location: position,
           rankBy: google.maps.places.RankBy.DISTANCE,
           keyword: 'sushi'
@@ -106,7 +111,7 @@
 
     function createMarkers(places) {
         places.forEach(function(place) {
-            var marker = new google.maps.Marker({
+            let marker = new google.maps.Marker({
                 position: place.geometry.location,
                 map: map,
                 title: place.name
