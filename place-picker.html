@@ -22,7 +22,7 @@
   <meta charset="utf-8">
   <style>
     /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
+     * element that contains the map. */
     #map {
       height: 100%;
       background-color: grey;
@@ -36,7 +36,8 @@
       padding: 0;
     }
 
-    /* Styling for an info pane that slides out from the left. Hidden by default. */
+    /* Styling for an info pane that slides out from the left. 
+     * Hidden by default. */
     #panel {
       height: 100%;
       width: null;
@@ -84,17 +85,16 @@
   <script>
     /* Note: This example requires that you consent to location sharing when
      * prompted by your browser. If you see the error "The Geolocation service
-     * failed.", it means you probably did not give permission for the browser to
-     * locate you. */
-    let map;
+     * failed.", it means you probably did not give permission for the browser * to locate you. */
     let pos;
-    let service;
+    let map;
     let bounds;
     let infoWindow;
     let currentInfoWindow;
     let infoPane;
+    let service;
     function initMap() {
-      // Set the default location
+      // Set the default location and initalize all variables
       pos = { lat: -33.857, lng: 151.213 };
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
@@ -102,6 +102,7 @@
       });
       bounds = new google.maps.LatLngBounds();
       infoWindow = new google.maps.InfoWindow;
+      currentInfoWindow = infoWindow;
       infoPane = document.getElementById('panel');
 
       // Try HTML5 geolocation
@@ -116,30 +117,34 @@
           infoWindow.setPosition(pos);
           infoWindow.setContent('Location found.');
           infoWindow.open(map);
-          currentInfoWindow = infoWindow;
           map.setCenter(pos);
-          // Call Places Nearby Search on default location
+
+          // Call Places Nearby Search on user's location
           getNearbyPlaces(pos);
         }, function () {
           handleLocationError(true, infoWindow, map.getCenter());
         });
       } else {
-        // Browser doesn't support Geolocation
+        // Browser doesn't support geolocation
         handleLocationError(false, infoWindow, map.getCenter());
       }
     }
 
+    // Handle a geolocation error
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      // Display an InfoWindow at the map center
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
       currentInfoWindow = infoWindow;
-      // Call Places Nearby Search on default location
+
+      // Call Places Nearby Search on the default location
       getNearbyPlaces(pos);
     }
 
+    // Perform a Places Nearby Search Request
     function getNearbyPlaces(position) {
       let request = {
         location: position,
@@ -151,12 +156,14 @@
       service.nearbySearch(request, nearbyCallback);
     }
 
+    // Handle the results (up to 20) of the Nearby Search
     function nearbyCallback(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         createMarkers(results);
       }
     }
 
+    // Set markers at the location of each place
     function createMarkers(places) {
       places.forEach(function (place) {
         let marker = new google.maps.Marker({
@@ -174,16 +181,21 @@
       map.fitBounds(bounds);
     }
 
+    // Callback for when the use clicks on a marker.
+    // Loads details on click rather than upfront to avoid rate limiting
+    // of API calls.
     function clickMarker(place, clickedMarker) {
       return function () {
         let request = {
           placeId: place.place_id,
-          fields: ['name', 'formatted_address', 'geometry', 'rating', 'website', 'photos']
+          fields: ['name', 'formatted_address', 'geometry', 'rating', 
+          'website', 'photos']
         };
         service.getDetails(request, showDetails(clickedMarker));
       }
     }
 
+    // Builds an InfoWindow to display details above the marker
     function showDetails(marker) {
       return function (placeResult, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -201,13 +213,14 @@
       }
     }
 
+    // Displays place details in a sidebar
     function showPanel(placeResult) {
       // If infoPane is already open, close it
       if (infoPane.classList.contains("open")) {
         infoPane.classList.remove("open");
       }
-      // Clear the previous details and 
-      // load the selected place details
+
+      // Clear the previous details
       while (infoPane.lastChild) {
         infoPane.removeChild(infoPane.lastChild);
       }
@@ -221,6 +234,7 @@
         photo.src = firstPhoto.getUrl();
         infoPane.appendChild(photo);
       }
+
       // Add place details with text formatting
       let name = document.createElement('h1');
       name.classList.add('place');
@@ -251,9 +265,8 @@
       infoPane.classList.add("open");
     }
   </script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDz_2ueMSrvzdBaNwmdmw7UJ8nWIViwY6g&libraries=places&callback=initMap">
-    </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+  </script>
 </body>
 
 </html>
