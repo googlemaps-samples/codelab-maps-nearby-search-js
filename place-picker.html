@@ -91,8 +91,8 @@
     let bounds;
     let infoWindow;
     let currentInfoWindow;
-    let infoPane;
     let service;
+    let infoPane;
     function initMap() {
       // Set the default location and initalize all variables
       pos = { lat: -33.857, lng: 151.213 };
@@ -189,7 +189,7 @@
         let request = {
           placeId: place.place_id,
           fields: ['name', 'formatted_address', 'geometry', 'rating', 
-          'website', 'photos']
+            'website', 'photos']
         };
         service.getDetails(request, showDetails(clickedMarker));
       }
@@ -199,10 +199,9 @@
     function showDetails(marker) {
       return function (placeResult, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          console.log(`InfoWindow firing for ${placeResult.name}, ${placeResult.rating}`);
           let placeInfowindow = new google.maps.InfoWindow();
-          placeInfowindow.setContent('<div><strong>' + placeResult.name + '</strong><br>' +
-            'Rating: ' + placeResult.rating + '</div>');
+          placeInfowindow.setContent('<div><strong>' + placeResult.name + 
+            '</strong><br>' + 'Rating: ' + placeResult.rating + '</div>');
           placeInfowindow.open(marker.map, marker);
           currentInfoWindow.close();
           currentInfoWindow = placeInfowindow;
@@ -228,7 +227,6 @@
       // Add the primary photo, if there is one
       if (placeResult.photos != null) {
         let firstPhoto = placeResult.photos[0];
-        console.log(firstPhoto.getUrl());
         let photo = document.createElement('img');
         photo.classList.add('hero');
         photo.src = firstPhoto.getUrl();
