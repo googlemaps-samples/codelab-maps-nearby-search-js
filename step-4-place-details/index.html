@@ -208,8 +208,10 @@
     function showDetails(placeResult, marker, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         let placeInfowindow = new google.maps.InfoWindow();
+        let rating = "None";
+        if (placeResult.rating) rating = placeResult.rating;
         placeInfowindow.setContent('<div><strong>' + placeResult.name +
-          '</strong><br>' + 'Rating: ' + placeResult.rating + '</div>');
+          '</strong><br>' + 'Rating: ' + rating + '</div>');
         placeInfowindow.open(marker.map, marker);
         currentInfoWindow.close();
         currentInfoWindow = placeInfowindow;
@@ -245,7 +247,7 @@
       name.classList.add('place');
       name.textContent = placeResult.name;
       infoPane.appendChild(name);
-      if (typeof placeResult.rating != 'undefined') {
+      if (placeResult.rating) {
         let rating = document.createElement('p');
         rating.classList.add('details');
         rating.textContent = `Rating: ${placeResult.rating} \u272e`;
