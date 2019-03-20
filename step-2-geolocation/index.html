@@ -39,23 +39,20 @@
 </head>
 
 <body>
+  <!-- Map appears here -->
   <div id="map"></div>
   <script>
     /* Note: This example requires that you consent to location sharing when
-     * prompted by your browser. If you see the error "The Geolocation service
-     * failed.", it means you probably did not give permission for the browser * to locate you. */
+     * prompted by your browser. If you see the error "Geolocation permission
+     * denied.", it means you probably did not give permission for the browser * to locate you. */
     let pos;
     let map;
     let bounds;
     let infoWindow;
     let currentInfoWindow;
+    let service;
     function initMap() {
-      // Set the default location and initalize all variables
-      pos = { lat: -33.857, lng: 151.213 };
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: pos,
-        zoom: 15
-      });
+      // Initialize variables
       bounds = new google.maps.LatLngBounds();
       infoWindow = new google.maps.InfoWindow;
       currentInfoWindow = infoWindow;
@@ -67,39 +64,45 @@
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: pos,
+            zoom: 15
+          });
           bounds.extend(pos);
 
           infoWindow.setPosition(pos);
           infoWindow.setContent('Location found.');
           infoWindow.open(map);
           map.setCenter(pos);
-
-          // Call Places Nearby Search on user's location
-          getNearbyPlaces(pos);
         }, function () {
-          handleLocationError(true, infoWindow, map.getCenter());
+          // Browser supports geolocation, but user has denied permission
+          handleLocationError(true, infoWindow);
         });
       } else {
         // Browser doesn't support geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
+        handleLocationError(false, infoWindow);
       }
     }
 
     // Handle a geolocation error
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    function handleLocationError(browserHasGeolocation, infoWindow) {
+      // Set default location to Sydney, Australia
+      pos = { lat: -33.856, lng: 151.215 };
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: pos,
+        zoom: 15
+      });
+
       // Display an InfoWindow at the map center
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
+        'Geolocation permissions denied. Using default location.' :
         'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
       currentInfoWindow = infoWindow;
-
-      // Call Places Nearby Search on the default location
-      getNearbyPlaces(pos);
     }
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
   </script>
 </body>
 

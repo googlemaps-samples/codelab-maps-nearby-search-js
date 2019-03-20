@@ -39,15 +39,16 @@
 </head>
 
 <body>
+  <!-- Map appears here -->
   <div id="map"></div>
   <script>
     /* Note: This example requires that you consent to location sharing when
-     * prompted by your browser. If you see the error "The Geolocation service
-     * failed.", it means you probably did not give permission for the browser * to locate you. */
+     * prompted by your browser. If you see the error "Geolocation permission
+     * denied.", it means you probably did not give permission for the browser * to locate you. */
     let pos;
     let map;
     function initMap() {
-      // Set the default location and initalize all variables
+      // Set the default location and initialize all variables
       pos = { lat: -33.857, lng: 151.213 };
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
@@ -55,7 +56,7 @@
       });
     }
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
   </script>
 </body>
 
