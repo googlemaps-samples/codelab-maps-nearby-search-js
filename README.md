@@ -1,7 +1,7 @@
 Build a Location-Based Place Picker with Google Maps Platform
 ============
 
-Learn to use the Google Maps Platform maps, routes, and places APIs/SDK to build a place picker, which geolocates the user and shows interesting POIs and businesses around them. The app will integrate location, photos, directions, place data and more.
+Learn to use Google Maps Platform's Maps and Places APIs to build a place picker, which geolocates the user and shows interesting POIs and businesses around them. The app will integrate location, photos, place data and more.
 
 This is the code referenced in the [Build a Location-Based Place Picker with Google Maps Platform](https://codelabs.developers.google.com/) code lab from Google.
 
@@ -10,12 +10,12 @@ What You'll Learn
 * How to create a customizable map
 * How to geolocate the user
 * How to search for nearby places and display the results
-* How to fetch details about a place
+* How to fetch and display details about a place
 
 What You'll Need
 --------------
-* A text editor
 * A web browser
+* Your favorite text or code editor
 * Basic knowledge of HTML, CSS, and JavaScript
 
 Support
