@@ -59,7 +59,7 @@
 
       // Try HTML5 geolocation
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
+        navigator.geolocation.getCurrentPosition(position => {
           pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -77,7 +77,7 @@
 
           // Call Places Nearby Search on user's location
           getNearbyPlaces(pos);
-        }, function () {
+        }, () => {
           // Browser supports geolocation, but user has denied permission
           handleLocationError(true, infoWindow);
         });
