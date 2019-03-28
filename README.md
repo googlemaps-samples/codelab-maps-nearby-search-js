@@ -1,9 +1,9 @@
-Build a Location-Based Place Picker with Google Maps Platform
+Build a Nearby Business Search service with Google Maps Platform
 ============
 
-Learn to use Google Maps Platform's Maps and Places APIs to build a place picker, which geolocates the user and shows interesting POIs and businesses around them. The app will integrate location, photos, place data and more.
+Learn to use Google Maps Platform’s Maps and Places APIs to build a local business search, which geolocates the user and shows interesting places around them. The app integrates location, place details, place photos, and more.
 
-This is the code referenced in the [Build a Location-Based Place Picker with Google Maps Platform](https://codelabs.developers.google.com/) code lab from Google.
+This is the code referenced in the [Build a Nearby Business Search service with Google Maps Platform](https://codelabs.developers.google.com/) code lab from Google.
 
 What You'll Learn
 ------------
@@ -24,7 +24,7 @@ Support
 - Stack Overflow: https://stackoverflow.com/questions/tagged/google-maps
 
 If you've found an error in this sample, please file an issue:
-https://github.com/googlecodelabs/google-maps-place-picker-js/issues
+https://github.com/googlecodelabs/google-maps-nearby-search-js/issues
 
 Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request through GitHub.
