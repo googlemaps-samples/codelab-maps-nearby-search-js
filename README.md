@@ -3,7 +3,7 @@ Build a Nearby Business Search service with Google Maps Platform
 
 Learn to use Google Maps Platform’s Maps and Places APIs to build a local business search, which geolocates the user and shows interesting places around them. The app integrates location, place details, place photos, and more.
 
-This is the code referenced in the [Build a Nearby Business Search service with Google Maps Platform](https://codelabs.developers.google.com/) code lab from Google.
+This is the code referenced in the [Build a Nearby Business Search service with Google Maps Platform](https://codelabs.developers.google.com/codelabs/google-maps-nearby-search-js/) code lab from Google.
 
 What You'll Learn
 ------------
