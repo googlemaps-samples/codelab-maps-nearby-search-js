@@ -35,16 +35,26 @@
       margin: 0;
       padding: 0;
     }
+
+    /* TODO: Step 4A1: Make a generic sidebar */
   </style>
 </head>
 
 <body>
+  <!-- TODO: Step 4A2: Add a generic sidebar -->
+
   <!-- Map appears here -->
   <div id="map"></div>
+
+  <!-- TODO: Step 1B, Add a map -->
   <script>
     /* Note: This example requires that you consent to location sharing when
      * prompted by your browser. If you see the error "Geolocation permission
      * denied.", it means you probably did not give permission for the browser * to locate you. */
+
+    /* TODO: Step 2, Geolocate your user
+     * Replace the code from here to the END TODO comment with new code from
+     * codelab instructions. */
     let pos;
     let map;
     function initMap() {
@@ -55,7 +65,11 @@
         zoom: 15
       });
     }
+    /* END TODO: Step 2, Geolocate your user */
   </script>
+
+  <!-- TODO: Step 1C, Get an API key -->
+  <!-- TODO: Step 3A, Load the Places Library -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
   </script>
 </body>
