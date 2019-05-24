@@ -35,12 +35,17 @@
       margin: 0;
       padding: 0;
     }
+
+    /* TODO: Step 4A1: Make a generic sidebar */
   </style>
 </head>
 
 <body>
+  <!-- TODO: Step 4A2: Add a generic sidebar -->
+
   <!-- Map appears here -->
   <div id="map"></div>
+
   <script>
     /* Note: This example requires that you consent to location sharing when
      * prompted by your browser. If you see the error "Geolocation permission
@@ -57,6 +62,7 @@
       bounds = new google.maps.LatLngBounds();
       infoWindow = new google.maps.InfoWindow;
       currentInfoWindow = infoWindow;
+      /* TODO: Step 4A3: Add a generic sidebar */
 
       // Try HTML5 geolocation
       if (navigator.geolocation) {
@@ -76,6 +82,7 @@
           infoWindow.open(map);
           map.setCenter(pos);
 
+          /* TODO: Step 3B2, Call the Places Nearby Search */
           // Call Places Nearby Search on user's location
           getNearbyPlaces(pos);
         }, () => {
@@ -105,10 +112,12 @@
       infoWindow.open(map);
       currentInfoWindow = infoWindow;
 
+      /* TODO: Step 3B3, Call the Places Nearby Search */
       // Call Places Nearby Search on the default location
       getNearbyPlaces(pos);
     }
 
+    /* TODO: Step 3B1, Call the Places Nearby Search */
     // Perform a Places Nearby Search Request
     function getNearbyPlaces(position) {
       let request = {
@@ -128,6 +137,7 @@
       }
     }
 
+    /* TODO: Step 3C, Generate markers for search results */
     // Set markers at the location of each place result
     function createMarkers(places) {
       places.forEach(place => {
@@ -137,6 +147,8 @@
           title: place.name
         });
 
+        /* TODO: Step 4B: Add click listeners to the markers */
+
         // Adjust the map bounds to include the location of this marker
         bounds.extend(place.geometry.location);
       });
@@ -144,7 +156,11 @@
        * show all the markers within the visible area. */
       map.fitBounds(bounds);
     }
+
+    /* TODO: Step 4C: Show place details in an info window */
   </script>
+
+  <!-- TODO: Step 3A, Load the Places Library -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
   </script>
 </body>

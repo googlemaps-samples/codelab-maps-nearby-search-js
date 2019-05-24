@@ -36,6 +36,7 @@
       padding: 0;
     }
 
+    /* TODO: Step 4A1: Make a generic sidebar */
     /* Styling for an info pane that slides out from the left. 
      * Hidden by default. */
     #panel {
@@ -79,10 +80,13 @@
 </head>
 
 <body>
+  <!-- TODO: Step 4A2: Add a generic sidebar -->
   <!-- The slide-out panel for showing place details -->
   <div id="panel"></div>
+
   <!-- Map appears here -->
   <div id="map"></div>
+
   <script>
     /* Note: This example requires that you consent to location sharing when
      * prompted by your browser. If you see the error "Geolocation permission
@@ -99,6 +103,7 @@
       bounds = new google.maps.LatLngBounds();
       infoWindow = new google.maps.InfoWindow;
       currentInfoWindow = infoWindow;
+      /* TODO: Step 4A3: Add a generic sidebar */
       infoPane = document.getElementById('panel');
 
       // Try HTML5 geolocation
@@ -180,6 +185,7 @@
           title: place.name
         });
 
+        /* TODO: Step 4B: Add click listeners to the markers */
         // Add click listener to each marker
         google.maps.event.addListener(marker, 'click', () => {
           let request = {
@@ -204,6 +210,7 @@
       map.fitBounds(bounds);
     }
 
+    /* TODO: Step 4C: Show place details in an info window */
     // Builds an InfoWindow to display details above the marker
     function showDetails(placeResult, marker, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -221,6 +228,7 @@
       }
     }
 
+    /* TODO: Step 4D: Load place details in a sidebar */
     // Displays place details in a sidebar
     function showPanel(placeResult) {
       // If infoPane is already open, close it
@@ -233,6 +241,7 @@
         infoPane.removeChild(infoPane.lastChild);
       }
 
+      /* TODO: Step 4E: Display a Place Photo with the Place Details */
       // Add the primary photo, if there is one
       if (placeResult.photos) {
         let firstPhoto = placeResult.photos[0];
@@ -272,6 +281,7 @@
       infoPane.classList.add("open");
     }
   </script>
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
   </script>
 </body>

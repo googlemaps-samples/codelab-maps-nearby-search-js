@@ -35,16 +35,25 @@
       margin: 0;
       padding: 0;
     }
+
+    /* TODO: Step 4A1: Make a generic sidebar */
   </style>
 </head>
 
 <body>
+  <!-- TODO: Step 4A2: Add a generic sidebar -->
+
   <!-- Map appears here -->
   <div id="map"></div>
+
   <script>
     /* Note: This example requires that you consent to location sharing when
      * prompted by your browser. If you see the error "Geolocation permission
      * denied.", it means you probably did not give permission for the browser * to locate you. */
+
+    /* TODO: Step 2, Geolocate your user
+     * Replace the code from here to the END TODO comment with this code from
+     * codelab instructions. */
     let pos;
     let map;
     let bounds;
@@ -57,6 +66,7 @@
       bounds = new google.maps.LatLngBounds();
       infoWindow = new google.maps.InfoWindow;
       currentInfoWindow = infoWindow;
+      /* TODO: Step 4A3: Add a generic sidebar */
 
       // Try HTML5 geolocation
       if (navigator.geolocation) {
@@ -75,6 +85,8 @@
           infoWindow.setContent('Location found.');
           infoWindow.open(map);
           map.setCenter(pos);
+
+          /* TODO: Step 3B2, Call the Places Nearby Search */
         }, () => {
           // Browser supports geolocation, but user has denied permission
           handleLocationError(true, infoWindow);
@@ -88,7 +100,7 @@
     // Handle a geolocation error
     function handleLocationError(browserHasGeolocation, infoWindow) {
       // Set default location to Sydney, Australia
-      pos = { lat: -33.856, lng: 151.215 };
+      pos = {lat: -33.856, lng: 151.215};
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
         zoom: 15
@@ -101,8 +113,15 @@
         'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
       currentInfoWindow = infoWindow;
+
+      /* TODO: Step 3B3, Call the Places Nearby Search */
     }
+    /* END TODO: Step 2, Geolocate your user */
+    /* TODO: Step 3B, Call the Places Nearby Search */
+    /* TODO: Step 3C, Generate markers for search results */
   </script>
+
+  <!-- TODO: Step 3A, Load the Places Library -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
   </script>
 </body>
